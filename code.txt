@@ -1,0 +1,21 @@
+     <?php 
+           $query_question = "SELECT * FROM service_questions WHERE service_id =".$id_service;
+           $result_question = $conn->query($query_question);
+           if ($result_question->num_rows > 0) {
+           while($row_question = $result_question->fetch_assoc()) {
+            $item = 1;
+            if($item == 1){
+              $show = "show";
+            }else{
+              $show = " ";
+            }
+           ?>
+          <div class="accordion-item">
+            <h3 class="accordion-header" id="heading<?php echo $item;?>">
+              <button class="accordion-button shadow-none mb-0 bg-transparent" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapse1"><?php echo $row_question['question']; ?></button>
+            </h3>
+            <div id="collapse1" class="accordion-collapse border-0 collapse <?php echo $show;?>" aria-labelledby="heading1" data-bs-parent="#accordion">
+              <div class="accordion-body"><?php echo $row_question['answer']; ?></div>
+            </div>
+          </div>
+          <?php $item = $item + 1; }}?>
